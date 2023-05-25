@@ -2,6 +2,7 @@
 
 Reposotorio criado para o desenvolvimento das atividades do programa Santander Coders 2023;
 nesse repositorio ficara salvo as licoes de introducao ao java, tera atividades e exemplos.
+
 1)Variaveis
 
 2)Operadores boleanos
