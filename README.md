@@ -20,3 +20,4 @@ nesse repositorio ficara salvo as licoes de introducao ao java, tera atividades 
 8)Vetores
 
 9)Funcoes
+No curso é recomendado que acesse a documentação JAVA, e que a URL seja salva como favoritos no browser.
