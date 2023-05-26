@@ -1,0 +1,356 @@
+Uma String armazena uma sequência de caracteres.
+
+Apesar de ser fácil de utilizar, essa classe possui diversas características que podem não ser óbvias para quem está tendo o seu primeiro contato com ela.
+
+Por exemplo, um objeto String é imutável, o que significa que o texto que ele carrega nunca é alterado.
+
+Sempre que um texto precisa ser modificado é utilizado mais espaço em memória para que uma nova String seja criada contendo a nova versão dele.
+
+Essas características serão o assunto que abordaremos primeiro.
+
+Como criar uma String
+Para o compilador, qualquer texto entre aspas duplas é uma String.
+
+Por esse motivo a criação de um objeto desse tipo não requer a utilização do operador new.
+
+Assim, uma String é criada de forma semelhante a um tipo primitivo, utilizando-se a sintaxe [tipo] [nome] = [valor], apesar de se tratar de um tipo por referência - um nome para um objeto em memória.
+
+O Código 1 apresenta a forma correta de se criar uma instância da classe String.
+
+String texto = "Qualquer texto entre aspas é uma String";
+
+Código 1. Criação de uma instância da classe String
+
+Também não utilizamos o operador new porque ao fazê-lo forçamos a criação de uma nova String, anulando um recurso de otimização da linguagem que evita que o mesmo texto exista mais de uma vez na memória.
+
+Por exemplo, no Código 2 criamos uma String utilizando o operador new, o que faz com que mais recursos sejam utilizados do que o necessário.
+
+String texto = new String("Qualquer texto entre aspas é uma String");
+
+Código 2. de uma string utilizando o operador new
+Toda a vez que o código acima for executado uma nova String será criada contendo o texto "Qualquer texto entre aspas é uma String".
+
+Caso o Código 2 esteja dentro de um loop for repetido por mil vezes, mil objetos serão criados.
+
+Contudo, se o Código 1 estiver dentro de um loop for repetido por mil vezes, apenas um objeto será criado na primeira repetição e reutilizado em todas as demais. Lembre-se, para o Java qualquer texto entre aspas duplas é uma instância da classe String.
+
+A prova disso é que podemos escrever um texto entre aspas e invocar a partir dele um método qualquer da classe String, como demonstra o Código 3.
+
+"Qualquer texto entre aspas é uma String".length();
+
+Código 3. Invocando um método qualquer da classe String
+Note acima que o texto não foi atribuído a nenhuma variável, mas ainda assim é um objeto plenamente funcional para o compilador, a partir do qual podemos invocar quaisquer métodos da classe String.
+
+O valor especial null
+É possível declarar uma variável como sendo do tipo String sem inicializá-la com um valor, como mostra o Código 4.
+
+String texto;
+Código 4. Declaração de uma string sem inicialização
+Nesse caso, se a variável texto for declarada dentro de uma classe, como membro, o valor padrão null será atribuído a ela, como vemos no Código 5.
+
+class Pessoa {
+    String nome;
+}
+
+class PessoaTeste {
+
+    public static void main(String[] args) {
+        Pessoa p = new Pessoa();
+        System.out.println(p.nome);
+    }
+}
+Código 5. String iniciada com o valor padrão null
+Quando a instância da classe Pessoa é criada na Linha 8, o valor padrão null é atribuído a variável nome e por esse motivo o método println exibirá o texto null no console, ao ser invocado na Linha 9.
+
+Caso a variável seja declarada dentro de um método, como variável local, um erro de compilação acontecerá se desejarmos utilizá-la, porque nenhuma variável local pode ser utilizada sem ter sido iniciada. Isso também vale para parâmetros de métodos. O Código 6 demonstra esse comportamento.
+
+class PessoaTeste {
+
+    public static void main(String[] args) {
+        String nome;
+        System.out.println(nome);
+    }
+}
+Código 6. Erro ao utilizar uma variável local sem iniciá-la
+Quando a variável nome for utilizada na Linha 5 ocorrerá um erro de compilação informando que a variável nome foi apenas declarada, mas não foi iniciada com nenhum valor.
+
+Testando igualdade entre Strings
+A comparação entre Strings utilizando o operador de igualdade (==) retornará true se as duas referências apontarem para o mesmo objeto na memória.
+
+Por exemplo, no Código 7 o texto "Nome e apelido são iguais" será impresso apenas porque nome e apelido apontam para o mesmo objeto criado quando o compilador encontra o texto "Arthur".
+
+String nome = "Arthur";
+String apelido = nome;
+
+if(nome == apelido) {
+    System.out.println("Nome e apelido são iguais");
+}
+Código 7. Exemplo de atribuição de referências
+O mesmo acontece no Código 8, no qual temos duas vezes a ocorrência do literal "Arthur", os quais a JVM tratará como sendo o mesmo objeto. Uma vez que nome e apelido apontam para o mesmo objeto, a expressão lógica nome == apelido será avaliada como true.
+
+String nome = "Arthur";
+String apelido = "Arthur";
+
+if (nome == apelido) {
+    System.out.println("Nome e apelido são iguais");
+}
+Código 8. Exemplo de atribuição de referências
+Contudo, no caso abaixo o texto "Nome e apelido são iguais" não será impresso, visto que nome e apelido apontam para objetos diferentes, sendo o primeiro criado com o comando new String("Arthur") e o segundo com o literal "Arthur". Lembre-se, o operador new força a criação de um novo objeto.
+
+String nome = new String("Arthur");
+String apelido = "Arthur";
+
+if (nome == apelido) {
+    System.out.println("Nome e apelido são iguais");
+}
+Código 9. Exemplo de atribuição de referências
+Nesse caso, se invertêssemos as linhas 1 e 2 o efeito seria o mesmo, porque new sempre força a criação de um novo objeto.
+
+Na maior parte das vezes em que estivermos comparando dois textos estaremos interessados em saber se seus caracteres são iguais e não se estão armazenados no mesmo espaço em memória. Nesse caso devemos utilizar algum método de comparação da classe String e ela possui vários. O primeiro que veremos aqui se chama equals.
+
+Equals
+Equals é um método da classe Object utilizado para testar a relação de igualdade entre dois objetos. Esse método está presente em todas as classes, porque todas elas derivam de Object. A forma como essa comparação será feita pode ser determinada por quem está escrevendo a classe e no caso de String, seu autor preparou o método equals (Código 10) para verificar se duas Strings contém exatamente os mesmos caracteres.
+
+String nome1 = "Carlos";
+String nome2 = "Carla";
+
+if (nome1.equals(nome2)) {
+    System.out.println("Os nomes são iguais!");
+} else {
+    System.out.println("Os nomes são diferentes!");
+}
+Código 10. Exemplo de comparação com método equals
+Nesse caso a mensagem "Os nomes são diferentes!" será impressa, uma vez que nome1 contém uma sequencia de caracteres diferente de nome2.
+
+equalsIgnoreCase
+Esse método ignora a distinção entre letras maiúsculas e minúsculas nas duas strings comparadas.
+
+String nome1 = "Carlos";
+String nome2 = "carlos";
+
+if(nome1.equalsIgnoreCase(nome2)) {
+    System.out.println("Os nomes são iguais!");
+}
+Código 12. Exemplo do método equalsIgnoreCase
+Nesse novo exemplo os nomes são iguais, então o método equalsIgnoreCase retornará true.
+
+compareTo
+Esse método pode retornar 0 se as strings forem iguais, um número negativo se a string que invoca o compareTo for menor que a string que é passada como um argumento e um número positivo se a string que invoca o compareTo for maior que a string que é passada como argumento.
+
+String nome1 = "Carlos";
+String nome2 = "Carla";
+
+System.out.println("nome2.compareTo(nome1) = "+nome2.compareTo(nome1));
+System.out.println("nome1.compareTo(nome2) = "+nome1.compareTo(nome2));
+Código 11. Exemplo do método compareTo
+Neste caso, compareTo vai nos dar um número negativo no primeiro caso, porque Carla é menor que Carlos, e um número positivo no segundo caso porque Carlos é maior que Carla.
+
+compareToIgnoreCase
+É uma função que compara textos lexigraficamente, ignorando se as letras são maiúsculas ou minúsculas. No exemplo abaixo fazemos duas comparações, uma utilizando compareTo e a outra usando compareToIgnoreCase para analisarmos as diferenças.
+
+String texto = "A API de Strings é uma das mais utilizadas na linguagem Java";
+String linguagem = texto.substring(texto.indexOf("Java"), texto.length());
+
+if (linguagem.compareToIgnoreCase("java") == 0) {
+    System.out.println("compareToIgnoreCase: Encontrei a linguagem! Ela é " + linguagem);
+}
+
+if(linguagem.compareTo("java") == 0) {
+    System.out.println("compareTo: Encontrei a linguagem! Ela é " + linguagem);
+}
+Código 12. Exemplo do método equalsIgnoreCase
+Após a execução desse código apenas a mensagem "compareToIgnoreCase: Encontrei a linguagem! Ela é Java" será impressa, uma vez que para compareTo os textos "JAVA" e "java" são diferentes.
+
+Principais métodos da classe String
+A partir daqui listaremos os principais métodos da classe String com exemplos comentados. Existem muitos métodos nesta classe e aqui falaremos sobre os mais utilizados. Para uma lista completa deles recomendo a documentação da classe String no site oficial da documentação do Java.
+
+Documentação oficial da classe String: Class String
+
+concat
+Existem duas formas de unir duas ou mais sequências de caracteres. A mais comum dentre elas é utilizando o operador de adição, como demonstra o Código 13.
+
+String nomeCompleto = nome + sobrenome;
+Código 13. Exemplo concatenação de Strings
+Uma outra forma de fazer isso é utilizando o método concat. Isso é menos comum, mas ainda é possível. O Código 14 ficaria dessa forma utilizando esse método:
+
+String nomeCompleto = nome.concat(sobrenome);
+Código 14. Exemplo de concatenação de Strings
+Note que se o valor de nome for Carlos e sobrenome for Henrique, o resultado do código acima será CarlosHenrique, porque não há espaço entre os dois textos.
+
+String.valueOf
+valueOf é um método estático da classe String, que não precisa de uma instância para ser invocado. Ele converte um tipo primitivo em um objeto do tipo String. O Código 15 demonstra como utilizar esse método.
+
+public class Testa_Metodo_valueOf {
+public static void main(String[] args) {
+double numero = 102939939.939;
+boolean booleano = true;
+
+System.out.println("Retorna Valor : " + String.valueOf(numero));
+System.out.println("Retorna Valor: " + String.valueOf(booleano));
+Código 15. Exemplo do método valueOf
+Length
+Retorna o comprimento do texto em uma String. No Código 16 é impresso o comprimento do texto.
+
+String nomeCurso = "Java";
+
+System.out.printf("\nTamanho da variável nomeCurso: %d", nomeCurso.length());
+Código 16. Exemplo do método length
+charAt
+Retorna o caractere em uma localização específica em uma String. Esse método possui um parâmetro do tipo inteiro que é usado como índice, retornando a partir dessa posição inserida nesse parâmetro. É importante lembrar que o índice sempre começa a ser contado do número 0 (zero) em diante. Sendo assim a posição do caractere a em Carlos é 1 e não 2, como se poderia deduzir.
+
+Nesse novo exemplo, no Código 17, a mensagem "O caractere A está na posição 1" será impressa, uma vez que o caractere A está na posição 1 da cadeia de caracteres.
+
+String nomeCurso = "JAVA";
+
+if(nomeCurso.charAt(1) == ‘A’) {
+    System.out.println(“O caractere A está na posição 1”);
+}
+Código 17. Exemplo do método charAt
+getChars
+Recupera um conjunto de caracteres de uma String. Esse método possui os seguintes parâmetros de entrada:
+
+srcBegin – Índice do primeiro caractere da string a ser copiada.
+srcEnd - Índice depois da última string a ser copiada.
+dst – O destino do array.
+dstBegin – o início do deslocamento no array de destino.
+String nomeCurso = "Curso Java Web";
+//É A DIFERENÇA DO 1º E 2º PARÂMETRO DO MÉTODO getChars
+//SE DIMINUIR OS 2 O RESULTADO TEM QUE SER O MESMO INICIADO NO ARRAY
+char[] numIndice = new char[7];
+
+nomeCurso.getChars(2, 9, numIndice, 0);
+System.out.print("Valores Copiados \n");
+
+for(char caracter : numIndice) {
+    System.out.print("["+caracter+"]");
+}
+
+System.out.println("\n\n Abaixo Índice demonstrativo dos valores copiados\n");
+
+int[] b = {0,1,2,3,4,5,6};
+for(int i = 0; i < b.length; i++) {
+    System.out.print("["+b[i]+"]");
+}
+Código 18. Exemplo do método getChars
+startsWith e endsWith
+Os métodos startsWith e endsWith aceitam uma string e um número inteiro como argumentos, retornando um valor booleano que indica se a string inicia ou termina, respectivamente, com o texto informado a partir da posição dada.
+
+String[] nomes = {"iniciado", "iniciando", "finalizado", "finalizando"};
+
+for (String recebeNomes : nomes) {
+    if (recebeNomes.startsWith("in"))
+        System.out.printf("\"%s\" inicia com \"in\" \n", recebeNomes);
+}
+
+System.out.println();
+
+for (String recebeNomes : nomes) {
+    if (recebeNomes.startsWith("ici", 2))
+        System.out.printf("\"%s\" inicia com \"ici\" na posição 2 \n", recebeNomes);
+}
+
+System.out.println();
+
+for (String recebeNomes : nomes) {
+    if (recebeNomes.endsWith("ado"))
+        System.out.printf("\"%s\" termina com \"ado\" \n", recebeNomes);
+}
+Código 19. Exemplo dos métodos startsWith e endsWith
+indexOf e lastIndexOf
+Permitem a localização de caracteres e substrings especificados em strings.
+
+indexOf
+Localiza a primeira ocorrência de um caractere em uma string. Se o método localizar o caractere, é retornado o índice do caractere na String, caso contrário retorna -1. Existem duas versões do indexOf que procuram caracteres em uma String.
+
+1ª versão – aceita um inteiro que é conhecido como o número do índice na String.
+2ª versão – aceita dois argumentos inteiros – o caractere e o índice inicial em que a pesquisa da String deve iniciar.
+lastIndexOf
+Localiza a última ocorrência de um caractere em uma string. O método procura do fim da string em direção ao começo, se encontrar o caractere é retornado o seu índice na string, caso contrário retorna -1. Existem duas versões do lastIndexOf que pesquisam por caracteres em uma string.
+
+1ª versão – utiliza um inteiro do caractere.
+2ª versão – aceita 2 argumentos – um inteiro de caractere e o índice a partir do qual iniciar a pesquisa de trás para frente.
+String letras = "abcadefghijklmcopqrsdeftuvz";
+//TESTA indexOf PARA LOCALIZAR UM CARACTERE EM UM STRING
+System.out.printf("Último 'c' está localizado no index %d\n", letras.indexOf('c'));
+System.out.printf("Último 'a' está localizado no index %d \n", letras.indexOf('a', 1));
+
+//-1 NÃO EXISTE
+System.out.printf("'$' está localizado no index %d\n\n", letras.indexOf('$'));
+
+//TESTA lastIndexOf PARA LOCALIZAR UM CARACTERE EM UMA STRING
+System.out.printf("Último 'c' está localizado no index %d\n", letras.lastIndexOf('c'));
+System.out.printf("Último 'a' está localizado no index %d\n", letras.lastIndexOf('a', 5));
+System.out.printf("Último '$' está localizado no index %d\n", letras.lastIndexOf('$'));
+
+//TESTA indexOf PARA LOCALIZAR UMA SUBSTRING EM UMA STRING
+System.out.printf("\"def\" está localizado no index %d\n", letras.indexOf("def"));
+
+//2 argumento string e outro o ponto inicial que começará a pesquisa
+System.out.printf("\"def\" está localizado no index %d\n", letras.indexOf("def", 7));
+System.out.printf("\"hello\" está localizado no index %d\n\n", letras.indexOf("hello"));
+Código 20. Exemplo dos métodos indexOf e lastIndexOf
+substring
+Permite extrair substrings de strings e fornece 2 métodos substring para permitir que um novo objeto seja criado copiando parte de um objeto string existente. Cada método retorna um novo objeto desse tipo. Existem duas versões desse método que são:
+
+1ª versão – recebe um argumento do tipo inteiro, que especifica a partir de que caractere a cópia deve começar. A substring retornada contém uma cópia dos caracteres desde esse índice até o último caractere na string.
+2ª versão - recebe dois argumentos do tipo inteiro. A String retornada será composta pelo o primeiro argumento e se estende até o caractere anterior ao segundo argumento. Portanto, o comprimento da String é "argumento_2 - argumento_1". Em outras palavras, você pode dizer que o primeiro argumento é inclusivo e o segundo argumento é exclusivo
+String nome = "José Silveira";
+System.out.println("String : " + nome);
+
+String substring = nome.substring(5);
+System.out.println("String depois da 3º index: " + "["+substring+"]");
+
+substring = nome.substring(1, 6);
+System.out.println("Substring (1,6): " + "["+substring+"]");
+Código 21. Exemplo do método substring
+replace
+Retorna um novo objeto contendo a string original com um trecho especificado substituído por outra expressão indicada. Esse método deixa a string original inalterada. A versão sobrecarregada do método replace permite substituir substrings em vez de caracteres individuais.
+
+String nome = "mesquita";
+String nomeAlterado = nome.replace('e', 'o');
+System.out.println(nomeAlterado);
+Código 22. Exemplo do método replace
+toUpperCase
+Retorna uma nova string com o conteúdo da original convertido para letras maiúsculas, mantendo a original inalterada.
+
+toLowerCase
+De forma semelhante ao anterior, o toLowerCase retorna uma cópia de uma string com todas as letras convertidas para minúsculo, mantendo a original inalterada.
+
+String nomeA = "joaquina";
+String nomeB = "Paulo";
+
+System.out.println(nomeA.toUpperCase());
+System.out.println(nomeB.toLowerCase());
+Código 23. Exemplo dos métodos toLowerCase e toUpperCase
+trim
+Gera um novo objeto string, removendo todos os caracteres de espaço em branco que aparecem no início ou no fim da string em que o método opera. 
+
+O método retorna um novo objeto string contendo a string sem espaço em branco inicial ou final. A string original permanece inalterada.
+
+toCharArray
+Cria um novo array de caracteres que contém uma cópia dos caracteres da variável apontada.
+
+String s1 = "olá";
+String s2 = "TCHAU";
+String s3 = " espaços ";
+
+System.out.println("s1 = "+ s1 + "\n" + "s2 = "+ s2 + "\n" + "s3 = "+s3);
+
+//MÉTODO REPLACE
+System.out.printf("Replace 'l' por 'L' no s1: %s\n\n", s1.replace('l', 'L'));
+
+//MÉTODO UPPER E LOWERCASE
+System.out.printf("s1.toUpperCase() = %s\n", s1.toUpperCase());
+System.out.printf("s2.toUpperCase() = %s\n\n", s2.toLowerCase());
+
+//MÉTODO TRIM - REMOVE OS ESPAÇOS
+System.out.printf("s3 depois do trim = \"%s\"\n\n", s3.trim());
+
+//CONVERTEU O olá PARA CHAR
+char[] charArray = s1.toCharArray();
+System.out.printf("s1 como um caracter array = ");
+
+for(char caracter : charArray) {
+    System.out.print(caracter);
+}
+Código 24. Exemplo dos métodos trim e toCharArray
