@@ -1,0 +1,79 @@
+Como usar o laço for em Java
+
+A sintaxe do laço for é a seguinte:
+
+for(cond inicial; teste condicional ; apos iteraçao){
+    //código
+}
+
+O laço funciona da seguinte maneira:
+
+O laço se inicia pela condição inicial. Geralmente se inicia o contador. Esse primeiro estágio SEMPRE acontece.
+
+O segundo estágio é o teste da condição do laço, um simples teste condicional. Caso seja verdade, o código é executado.
+Ao término de execução do código, ocorre o fator de mudança, que geralmente é um incremento ou decremento, sempre após cada iteração do looping,
+
+Depois a condição é testada novamente. Caso retorne 'true', o código é executado.
+Ao término de execução do código, sempre ocorre o fator de mudança...e assim sucessivamente.
+
+Faremos 3 exemplos que mostram bem o exemplo do uso e flexibilidade laço for.
+É importante que você aprenda bem, pois eles serão muito usados em nosso curso de Java.
+
+Exemplo 1: Contando até 10, com laço for
+public class for1 {
+    public static void main(String[] args) {
+        for(int count=1 ; count <= 10 ; count++){
+            System.out.println(count);
+        }
+    }
+
+}
+
+Nesse exemplo, fiz questão de mostrar uma importante característica do laço for: a declaração dentro do for
+Note que, na condição inicial do contador, foi declarado o inteiro 'count', que foi usado no laço.
+
+Como funciona:
+A primeira coisa que acontece é a condição inicial. No nosso caso, é criado um inteiro, 'count' e inicializado com o valor 1.
+Depois, a condição é testada. Como ela é verdadeira, ele imprime o valor de 'count', que é 1.
+
+Depois 'count' é incrementada e vira 2.
+Depois é testada. Como continua ser menor que 10, ela é imprimida. Depois incrementada, testada, imprimida...ela é imprimida até ser 10, pois depois disso ela será incrementada e 'count' será 11, então a condição não será mais verdadeira e o laço for terminará.
+
+Exemplo 2: contagem regressiva, usando o laço for
+public class for2{
+    public static void main(String[] args) {
+        for(int count=10 ; count >= 1; count--){
+            System.out.println(count);
+        }
+    }
+}
+
+
+Esse exemplo serve para mostrar que podemos usar o decremento, não somente o incremento, dentro do laço for.
+
+Como funciona:
+A primeira coisa que acontece é a condição inicial. No nosso caso, é criado um inteiro, 'count' e inicializado com o valor 10.
+
+Depois, a condição é testada. Como 'count' é maior ou igual a 1, é verdadeira e se imprime o valor de 'count', que é 10.
+Após essa execução, 'count' se torna 9, e continua a ser maior ou igual a 1, e impressa...quando 'count' for 1, ela será impressa, por 1 é maior ou igual a 1.
+Porém, ao ser decrementada, se tornará 0 e o laço for terminará.
+
+Exemplo 3: contagem progressiva e regressiva no mesmo laço for
+Outra característica do laço for, é que não precisamos usar só uma variável de controle ('count') ou  testar somente uma condição. O código Java para isso é:
+
+public class for3 {
+    public static void main(String[] args) {
+        for(int sobe=1, desce=10 ; sobe<=10 && desce>=1; sobe++, desce--){
+            System.out.printf("%d \t %d \n", sobe, desce);
+        }
+    }
+
+}
+
+
+Como funciona:
+
+Declaramos duas variáveis, a 'sobe', que vai ser incrementada e impressa de 1 até 10,
+e a variável 'desce' que será decrementada e impressa de 10 até 1.
+Dentro do printf usamos o caractere '\t', que é o código ASCII para a tabulação, ou seja, o nosso famoso 'tab'.
+
