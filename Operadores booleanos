@@ -1,0 +1,243 @@
+O que é operador booleano?
+
+Os operadores booleanos são simplesmente um conjunto de diferentes operadores que podem ser usados para comparar expressões.
+
+Os operadores booleanos geralmente têm dois valores, false ou true.
+
+Os operadores booleanos comparam a expressão do lado esquerdo e do lado direito.
+
+Em comparação, ele simplesmente retorna um valor booleano.
+
+Tipos de operadores booleanos em Java
+
+Existem vários tipos de operadores booleanos em Java. A seguir estão os vários tipos de operadores booleanos em Java que são mais amplamente usados.
+
+Lógico "AND"
+Lógico "OR"
+Igual a
+Não é igual a
+Operador Ternário
+
+Existem vários tipos de operadores booleanos em Java. A seguir estão os vários tipos de operadores booleanos em Java que são mais amplamente usados.
+
+Lógico AND
+Lógico OR
+Igual a
+Não é igual a
+Operador Ternário
+
+1) Operador AND lógico
+Esta é uma atribuição lógica que usa o operador && para comparar a expressão lógica.
+
+Geralmente dá falso se qualquer uma das múltiplas lógicas falhar ou dá verdadeiro se toda a expressão produzir verdadeiro.
+
+Exemplo de operador AND -
+Se ambos os operandos forem verdadeiros, o resultado da operação será verdadeiro
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=true;
+boolean b=true;
+System.out.println (a && b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+Se ambos os operandos forem falsos, o resultado da operação será falso
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=false;
+boolean b=false;
+System.out.println (a && b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+Se um operando for verdadeiro e o outro for falso, o resultado da operação será falso.
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=true;
+boolean b=false;
+System.out.println (a && b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+Se um operando for falso e o outro for verdadeiro, o resultado da operação será falso.
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=false;
+boolean b=true;
+System.out.println (a && b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+2) Operador OR lógico
+Esta é uma atribuição lógica que usa || operador para comparar a expressão lógica. Geralmente dá true se alguma expressão se tornar verdadeira e retorna false se toda a expressão falhar.
+
+Exemplo de operador OR -
+Se ambos os operandos forem verdadeiros, o resultado da operação será verdadeiro
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=true;
+boolean b=true;
+System.out.println (a || b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+Se ambos os operandos forem falsos, o resultado da operação será falso
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=false;
+boolean b=false;
+System.out.println (a || b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+Se um operando for verdadeiro e o outro for falso, o resultado da operação será verdadeiro.
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=true;
+boolean b=false;
+System.out.println (a || b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+Se um operando for falso e o outro for verdadeiro, o resultado da operação será verdadeiro.
+classe pública Principal
+{
+public static void main(String() args) {
+boolean a=false;
+boolean b=true;
+System.out.println (a || b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+3) Igual ao Operador
+Este operador é usado para verificar se o operando ou expressão em ambos os lados do operador são iguais ou não.
+
+Exemplo de operador igual a -
+Se os dois operandos não forem iguais, o resultado da operação é falso
+classe pública Principal
+{
+public static void main(String() args) {
+"String a=abc;
+""String b=abcd;
+"System.out.println (a==b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+Se os dois operandos forem iguais, o resultado da operação é verdadeiro
+classe pública Principal
+{
+public static void main(String() args) {
+"String a=abc;
+""String b=abc;
+"System.out.println (a==b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+4) Diferente do Operador
+Este operador é usado para verificar se o operando ou expressão em ambos os lados do operador são iguais ou não.
+
+Produz true se os operandos em ambos os lados não forem iguais; senão dá falso.
+
+Exemplos de diferente do operador -
+Se os dois operandos não forem iguais, o resultado da operação é true
+classe pública Principal
+{
+public static void main(String() args) {
+"String a=abc;
+""String b=abcd;
+"System.out.println (a !=b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: true
+
+Se ambos os operandos forem iguais, o resultado da operação é falso
+classe pública Principal
+{
+public static void main(String() args) {
+"String a=abc;
+""String b=abc;
+"System.out.println (a !=b); // mostra a operação lógica usando o operador
+}
+}
+
+Agora, execute o código acima
+
+Saída: false
+
+5) Operador Ternário
+Este operador é usado para verificar se outras condições.
+
+Geralmente é uma abreviação para a instrução if-else.
+
+Se a expressão for verdadeira, se a peça for executada de outra forma, o bloco else será executado.
+
+Ele usa dois operandos que são ?:
+
+Exemplo de Operador Ternário
+classe pública Principal
+{
+public static void main (String()args){
+int a=2;
+int b=5;
+int minOfNum=(a System.out.println (minOfNum);
+}
+}
+
+Saída: 2
+
+Na expressão, (a
+
+Conclusão
+Java é uma linguagem de programação onde existem muitos conceitos que precisam ser estudados. Os operadores booleanos são um deles. Esses operadores booleanos basicamente executam o código para verificar se o valor da expressão é verdadeiro ou não.
+
+Com base na avaliação da expressão, ele retorna o valor. Um operador booleano é amplamente utilizado em qualquer linguagem de programação para várias expressões de programação lógica.
