@@ -1,0 +1,69 @@
+Tipos de dados primitivos:
+Como tipos primitivos entende-se aqueles tipos de informação mais usuais e básicos.
+São os habituais de outras linguagens de programação.
+Descreveremos algum dado para ter em conta em cada tipo.
+
+Boolean: Não é um valor numérico, só admite os valores verdadiro(true) ou falso(false).
+
+Char: Usa o código UNICODE e ocupa cada caractere 16 bits.
+
+Inteiros: Diferem nas precisões e podem ser positivos ou negativos.
+
+Byte: 1 byte.
+
+Short: 2 bytes.
+
+Int: 4 bytes.
+
+Long: 8 bytes.
+
+Reais em ponto flutuante: igual que os inteiros também diferem nas precisões e podem ser positivos ou negativos.
+
+Float: 4 bytes.
+
+Double: 8 bytes.
+
+Variáveis:
+
+Agora que temos as peças necessárias ( identificadores e tipos ) podemos definir variáveis em Java. Uma variável referenciará sempre a um tipo primitivo de Java ou a qualquer outro objeto criado em nosso programa. Vejamos algumas declarações:
+
+Int a ; // declaração de uma variável 'a'
+         //iniciada a 0 (valor por padrão).
+
+Int b = 8; // declaração de uma variável 'b' iniciada a 8.
+
+NomeClasse referencia; // declaração de uma variável 'referencia' preparada //para levar um objeto da classe 'NomeClasse'.
+
+NomeClasse referencia2; // o mesmo que na variável anterior.
+
+Referencia = new NomeClasse; // se cria um novo objeto da classe
+         //'NomeClasse', e é atribuída à variável
+         //'Referencia'
+
+Referencia2 = referencia; // Agora também 'referencia2' tem o mesmo
+         // objeto a seu cargo que 'referencia'
+
+Uma vez tenhamos um pouco de idéia de como declarar variáveis em Java, temos que ter em conta desde que sites de nosso programa podemos acessa-las, é o que chamamos de âmbito das variáveis.
+
+Basicamente a norma é que a variável tenha validade dentro do bloco fechado entre chaves onde foi declarada, já seja dentro de uma função ou de, por exemplo, uma sentença 'if'.
+Vejamos um exemplo com um pequeno programa em Java.
+
+public class AmbitoVariaveis {
+
+    public static void main(String[] args) {
+       if (true) {
+          int y=5;
+       }
+       System.out.println(y);
+    }
+}
+
+Se tentarmos executar este código o compilador nos dará um erro dizendo que a variável não está definida visto que a declaramos em um bloco diferente de onde pretendíamos utiliza-la.
+
+Existem mais normas de âmbito com respeito às variáveis membros de uma classe.
+
+Para acessa-las depende se na classe está declarada como 'public' ou como 'private'. As variáveis declaradas em uma classe como 'public' se acessam diretamente através de 'NomeClase.nomeVariavel'. No caso de uma variável 'private' só podemos utiliza-la mediante os métodos dessa classe.
+
+Por outro lado através da declaração de qualquer função própria de uma classe podemos acessar às variáveis internas dessa classe diretamente.
+
+Já incluiremos mais normas de âmbito quando vejamos o conceito de herança nos seguintes capítulos da programação em Java. Este tutorial acaba com o seguinte ponto no qual vemos os operadores.
