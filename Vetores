@@ -1,0 +1,118 @@
+O que são vetores e como são utilizados no Java?
+Vetores são estruturas de dados que armazenam usualmente uma quantidade fixa de dados de um certo tipo; por esta razão, também são conhecidos como estruturas homogêneas de dados.
+
+Internamente, um vetor armazena diversos valores, cada um associado a um número que se refere à posição de armazenamento, e é conhecido como índice. Os vetores são estruturas indexadas, em que cada valor que pode ser armazenado em uma certa posição (índice) é chamado de elemento do vetor.
+
+Cada elemento do vetor pode ser utilizado individualmente de forma direta, ou seja, pode ser lido ou escrito diretamente, sem nenhuma regra ou ordem preestabelecida, fazendo dos vetores estruturas de dados de acesso aleatório.
+
+O número de posições de um vetor corresponde ao tamanho que ele tem; assim, um vetor de tamanho 10 tem esse número de elementos, isto é, pode armazenar até dez elementos distintos.
+
+Os diferentes elementos de um vetor são distinguidos unicamente pela posição que ocupam no vetor. Cada posição de um vetor é unicamente identificada por um valor inteiro positivo, linear e sequencialmente numerado.
+
+a[i], corresponde ao i-ésimo elemento do vetor a, sendo que o valor da variável i deve pertencer ao intervalo dos índices do vetor: ((i >= 0) && (i < a.length)).
+
+O Java como as linguagens C e C++ são linguagens com vetores zero-based, isto é, as posições do vetor iniciam a numeração a partir do valor 0, portanto, um vetor de tamanho 10 teria índices iniciados em 0 prosseguindo até o 9.
+
+2.1.       Declarando vetores
+ 
+Na declaração de vetores deverão ser fornecidas três informações: 1) o nome do vetor, 2) o número de posições do vetor (seu tamanho), e 3) o tipo de dado que será armazenado no vetor.
+
+A declaração de um vetor para “inteiros”, de nome “vetor”, em Java:
+
+int vetor[ ];
+ 
+Apesar de declarado, o vetor declarado ainda não está pronto para uso.
+
+Isto ocorre por que o vetor necessita ser alocado na memória.
+
+Esta operação é feita através do construtor chamado pela palavra reservada “new”. Observe o exemplo:
+ 
+vetor = new int[10];
+ 
+Observe a tabela:
+v[0]
+v[1]
+v[2]
+v[3]
+v[4]
+v[5]
+v[6]
+v[7]
+v[8]
+v[9]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ 
+2.2.       Inicialização de vetores
+ 
+Para atribuir valores aos vetores é necessário acessar suas posições e inserir os valores. Podemos realizar esta operação da seguinte forma:
+
+Vetor[1] = 1;
+Vetor [2] = 2;
+
+Também é possível realizar a inicialização de vetores diretamente em sua instanciação, observe o exemplo:
+ 
+
+Int[ ] vet = {1,2,3,4,5,6,7,8};
+ 
+Desta forma, o vetor instanciado automaticamente passa a ter o tamanho igual a quantidade de valores atribuídos.
+ 
+2.3.       Como percorrer vetores
+Para percorrer um vetor é necessário utilizar um laço de repetição. Os índices são variáveis inteiras e são incrementadas pelo laço de repetição.
+
+Observe o exemplo:
+
+for( int i = 0 ; i < 0 ; i++ ) {
+            m[i];
+}
+
+3.            Matrizes
+ 
+O Java não suporta nativamente vetores multidimensionais, então a solução adotada é utilizar vetores de vetores.
+
+Para declarar um vetor multidimensional em Java, deve-se seguir a seguinte sintaxe:
+ 
+
+Int matriz [ ] [ ]  = new int [ 2 ] [ 3 ];
+ 
+ 
+Podemos representar esta estrutura da seguinte forma:
+ 
+Representação interna
+m[0][0]
+m[0][1]
+m[0][2]
+m[0][3]
+m[1][0]
+m[1][1]
+m[1][2]
+m[1][3]
+ 
+ 
+3.1.       Inicialização de matrizes
+A inicialização de matrizes e a atribuição de valores é muito semelhante a de vetores. Acompanhe o exemplo de acesso as posições de uma matriz:
+
+Para inicialização direta de uma matriz devemos utilizar a seguinte sintaxe:
+
+int m[][] = {{0,1,2},{2,4,5},{9,7,5}};
+ 
+ 
+3.2.       Como percorrer matrizes
+ 
+Para percorrer uma matriz podemos utilizar dois laços de repetição encadeados.
+
+Onde o mais externo irá percorrer as linhas e o mais interno irá percorrer as colunas. Observe o exemplo :
+
+for( int i = 0 ; i < matriz.length; i++){
+  for ( int j = 0 ; j < matriz.length; j++){
+            m[i][j];
+  }
+}
